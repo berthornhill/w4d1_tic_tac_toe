@@ -17,5 +17,20 @@ class TicTacToeNode
   # This method generates an array of all moves that can be made after
   # the current move.
   def children
+    current_pos = prev_move_pos
+    empty_pos = []
+    @board.each do |row|
+      row.each do |col|
+        if @board[row][col].length == 0
+          empty << [row, col]
+        end
+      end
+    end
   end
+
+  def child_node_maker(pos)
+    TicTacToeNode.new(board.place_mark(pos, next_mover_mark), )
+
+  end
+
 end
