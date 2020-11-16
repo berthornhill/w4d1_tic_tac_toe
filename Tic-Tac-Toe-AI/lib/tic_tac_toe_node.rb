@@ -17,23 +17,29 @@ class TicTacToeNode
   # This method generates an array of all moves that can be made after
   # the current move.
   def children
-    current_pos = prev_move_pos
+    current_pos = @prev_move_pos
     empty_pos = []
-    @board.each do |row|
+    next_mark = self.switch(next_mover_mark)
+    @oard.rows.each do |row|
       row.each do |col|
-        self.next_mover_mark << TicTacToeNode.new(board.place_mark([row, col], :x), :o , @board)  
-        if @board[row][col].length == 0
-
-          empty << [row, col]
+        new_board = @board.dup
+        if new_board.rows[row][col].nil?
+          
+          new_board.rows[row][col] = next_mover_mark
+          empty_pos << TicTacToeNode.new(new_board, next_mark , [row, col])
         end
       end
+      empty_pos
     end
   end
 
-  def child_node_maker(pos)
-    TicTacToeNode.new(board.place_mark(pos, next_mover_mark), ) 
-    # TTTN.new(#place_mark/update_board, switch_player, pos = prev_move_pos)
-
+  def switch(mark)
+    if mark == :x
+      mark = :o
+    else
+      mark = :x
+    end
   end
 
+  
 end
