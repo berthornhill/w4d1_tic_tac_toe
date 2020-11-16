@@ -21,7 +21,9 @@ class TicTacToeNode
     empty_pos = []
     @board.each do |row|
       row.each do |col|
+        self.next_mover_mark << TicTacToeNode.new(board.place_mark([row, col], :x), :o , @board)  
         if @board[row][col].length == 0
+
           empty << [row, col]
         end
       end
@@ -29,7 +31,8 @@ class TicTacToeNode
   end
 
   def child_node_maker(pos)
-    TicTacToeNode.new(board.place_mark(pos, next_mover_mark), )
+    TicTacToeNode.new(board.place_mark(pos, next_mover_mark), ) 
+    # TTTN.new(#place_mark/update_board, switch_player, pos = prev_move_pos)
 
   end
 
