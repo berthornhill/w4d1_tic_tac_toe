@@ -9,7 +9,35 @@ class TicTacToeNode
   end
 
   def losing_node?(evaluator)
+    possible_move = self.children
+    possible_move.each do |node| 
+      # winner_move(node)
+      if node.board.winner != switch(evaluator)
+        return false
+      end
+    end
+    return true 
   end
+
+  # def winner_move(node)
+  #   (0..2).each do |row|
+  #     (0..2).each do |col|
+  #       board = node.board.dup
+  #       pos = [row, col]
+
+  #       next unless board.empty?(pos)
+  #       board[pos] = node.next_mover_mark
+
+  #       return pos if board.winner == node.next_mover_mark
+  #     end
+  #   end
+  #   nil
+  #   # no w
+  # end
+
+  # [:o, nil, :o], 
+  # [nil, nil, nil]  next_mover_mark :o
+  # [nil, :x, :o]
 
   def winning_node?(evaluator)
   end
